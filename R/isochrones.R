@@ -57,7 +57,7 @@ tlim <- c (2, 5, 10, 15) * 60
 polys_all <- data.frame()
 for (i in 1:nrow(kiosko_sf)) {
   
-  x <- dodgr_isochrones(graph_complete_weighted, from = sf::st_coordinates(kiosko_sf$geometry)[i,], tlim)
+x <- dodgr_isochrones(graph_complete_weighted, from = sf::st_coordinates(kiosko_sf$geometry)[i,], tlim)
   iso <-  st_as_sf(x, coords=c("x","y"))
   try(polys <- iso %>% 
         dplyr::group_by(from, tlim) %>% 
