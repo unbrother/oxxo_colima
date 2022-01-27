@@ -1,7 +1,6 @@
 # Isocrhones --------------------------------------------------------------
 
-# Ampliamos la red
-
+# Expand network for mapping purposes
 colima <- "colima colima mexico"
 graph_complete <- opq(colima) %>% 
   add_osm_feature(key = "highway") %>% 
@@ -14,7 +13,7 @@ graph <- opq(colima) %>%
 graph <- graph$osm_lines
 class(graph)
 
-# Creación de isochrones para peatones
+# Generate pedestrian isochrones
 graph_complete_weighted <- weight_streetnet(graph_complete, wt_profile = "foot")
 
 tlim <- c (2, 5, 10, 15) * 60 
@@ -49,7 +48,7 @@ tm_shape(graph, bbox = c(-103.78,19.2, -103.65, 19.31 )) +
   tm_shape(polys_tlim) +
   tm_polygons(col = "tlim", alpha = 0.3)
 
-# Creación de isochrones para autos
+# Generate motorcar isochrones
 graph_complete_weighted <- weight_streetnet(graph_complete, wt_profile = "motorcar")
 
 tlim <- c (2, 5, 10, 15) * 60 
